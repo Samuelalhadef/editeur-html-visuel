@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Type, Download, Upload, Eye, Code, Save, RefreshCw, Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight, Languages } from 'lucide-react';
 
 function App() {
   const [htmlContent, setHtmlContent] = useState('');
@@ -1764,8 +1763,7 @@ function App() {
             onClick={translateAllText}
             disabled={isTranslating}
           >
-            <Languages size={16} />
-            {isTranslating ? `${t.translating} ${loadingProgress}%` : t.translate}
+            🌐 {isTranslating ? `${t.translating} ${loadingProgress}%` : t.translate}
           </button>
         )}
 
@@ -1904,8 +1902,7 @@ function App() {
           style={{...interfaceStyles.button, ...interfaceStyles.toggleButton}}
           onClick={() => setViewMode(viewMode === 'edit' ? 'preview' : 'edit')}
         >
-          {viewMode === 'edit' ? <Eye size={16} /> : <Code size={16} />}
-          {viewMode === 'edit' ? t.preview : t.edit}
+          {viewMode === 'edit' ? '👁️' : '💻'} {viewMode === 'edit' ? t.preview : t.edit}
         </button>
 
         {/* Import/Export */}
@@ -1914,7 +1911,7 @@ function App() {
           onClick={() => fileInputRef.current?.click()}
           disabled={fileLoading}
         >
-          <Upload size={16} /> {fileLoading ? t.fileLoading : t.loadHtml}
+          ⬆️ {fileLoading ? t.fileLoading : t.loadHtml}
         </button>
         <input
           ref={fileInputRef}
@@ -1962,21 +1959,21 @@ function App() {
               style={{...interfaceStyles.button, ...interfaceStyles.buttonSecondary}}
               onClick={saveCurrentState}
             >
-              <Save size={16} /> {t.save}
+              💾 {t.save}
             </button>
 
             <button
               style={{...interfaceStyles.button, ...interfaceStyles.buttonSuccess}}
               onClick={exportHTML}
             >
-              <Download size={16} /> {t.export}
+              ⬇️ {t.export}
             </button>
 
             <button
               style={{...interfaceStyles.button, ...interfaceStyles.buttonSecondary}}
               onClick={resetPositions}
             >
-              <RefreshCw size={16} /> {t.reset}
+              🔄 {t.reset}
             </button>
           </>
         )}
@@ -1986,8 +1983,7 @@ function App() {
           <div style={interfaceStyles.editPanel}>
             <div style={interfaceStyles.editTitle}>
               <span>
-                <Type size={16} style={{ marginRight: '8px' }} />
-                {t.editing} {selectedElement.tagName.toLowerCase()}
+                📝 {t.editing} {selectedElement.tagName.toLowerCase()}
               </span>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <button 
@@ -2029,8 +2025,7 @@ function App() {
               }}
               disabled={isTranslating}
             >
-              <Languages size={16} style={{ marginRight: '6px' }} />
-              {isTranslating ? t.translating : t.translateElement}
+              🌐 {isTranslating ? t.translating : t.translateElement}
             </button>
 
             {/* Édition du texte */}
@@ -2055,7 +2050,7 @@ function App() {
                     ...(selectedElement.style.fontWeight === 'bold' ? interfaceStyles.activeStyleButton : {})
                   }}
                 >
-                  <Bold size={14} /> {t.bold}
+                  <strong>B</strong> {t.bold}
                 </button>
                 <button
                   onClick={() => toggleElementStyle('fontStyle', 'italic', 'normal')}
@@ -2064,7 +2059,7 @@ function App() {
                     ...(selectedElement.style.fontStyle === 'italic' ? interfaceStyles.activeStyleButton : {})
                   }}
                 >
-                  <Italic size={14} /> {t.italic}
+                  <em>I</em> {t.italic}
                 </button>
                 <button
                   onClick={() => toggleElementStyle('textDecoration', 'underline', 'none')}
@@ -2073,7 +2068,7 @@ function App() {
                     ...(selectedElement.style.textDecoration === 'underline' ? interfaceStyles.activeStyleButton : {})
                   }}
                 >
-                  <Underline size={14} /> {t.underline}
+                  <u>U</u> {t.underline}
                 </button>
               </div>
               
@@ -2085,7 +2080,7 @@ function App() {
                     ...(selectedElement.style.textAlign === 'left' ? interfaceStyles.activeStyleButton : {})
                   }}
                 >
-                  <AlignLeft size={14} /> {t.left}
+                  ← {t.left}
                 </button>
                 <button
                   onClick={() => setElementAlignment('center')}
@@ -2094,7 +2089,7 @@ function App() {
                     ...(selectedElement.style.textAlign === 'center' ? interfaceStyles.activeStyleButton : {})
                   }}
                 >
-                  <AlignCenter size={14} /> {t.center}
+                  ↔️ {t.center}
                 </button>
                 <button
                   onClick={() => setElementAlignment('right')}
@@ -2103,7 +2098,7 @@ function App() {
                     ...(selectedElement.style.textAlign === 'right' ? interfaceStyles.activeStyleButton : {})
                   }}
                 >
-                  <AlignRight size={14} /> {t.right}
+                  → {t.right}
                 </button>
               </div>
             </div>
@@ -2234,7 +2229,7 @@ function App() {
             />
           ) : (
             <div style={interfaceStyles.emptyState}>
-              <Type size={64} style={{ marginBottom: '16px', opacity: 0.5 }} />
+              📝
               <h3 style={{ margin: '0 0 8px 0' }}>{t.noFileLoaded}</h3>
               <p style={{ margin: 0 }}>{t.loadFilePrompt}</p>
             </div>
